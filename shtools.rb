@@ -1,7 +1,7 @@
 require "formula"
 require 'fileutils'
 
-class SHTOOLS < Formula
+class Shtools < Formula
   homepage "https://shtools.ipgp.fr" # used by `brew home example-formula`.
   url "https://github.com/SHTOOLS/SHTOOLS/archive/v3.0.tar.gz" 
   version "3.0"
