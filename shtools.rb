@@ -10,14 +10,15 @@ class Shtools < Formula
   
   keg_only "For the time being, this is keg only."
 
-  depends_on :python
-  depends_on :fortran 
+  depends_on "python"
+  depends_on "gcc" 
   depends_on "fftw"
 
   def install
 
-	ENV.prepend_path "PATH", "/usr/bin"
-    ENV.prepend_path "PATH", "/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin"
+
+	#ENV.prepend_path "PATH", "/usr/bin"
+    #ENV.prepend_path "PATH", "/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin"
     system "echo $PATH"
 	system "make"
 	system "make" "python"
