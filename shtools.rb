@@ -16,12 +16,10 @@ class Shtools < Formula
 
   def install
 
-	END["FC"] = "gfortran"
-	#ENV.prepend_path "PATH", "/usr/bin"
-    #ENV.prepend_path "PATH", "/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin"
-    system "echo $PATH"
+	ENV.prepend_path "PATH", "/usr/bin"
+    ENV.prepend_path "PATH", "/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin"
 	system "make"
-	system "make" "python"
+	system "make python"
 
   end
 
