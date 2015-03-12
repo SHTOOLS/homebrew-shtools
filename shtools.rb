@@ -30,10 +30,12 @@ class Shtools < Formula
       
           gfortran #{prefix}/modules -m64 -fPIC -O3 -L#{prefix}/lib -lSHTOOLS -lfftw3 -lm -llapack -lblas
       
-      To use SHTOOLS with python:
+      To use SHTOOLS with in Python:
       
-          Add #{prefix} to the system PYTHONPATH
-          In python: import pyshtools as shtools
+          import sys
+          sys.path.append('#{prefix}')
+          (alternatively, add #{prefix} to the system PYTHONPATH)
+          import pyshtools as shtools
       
       To run test/example suite:
       
