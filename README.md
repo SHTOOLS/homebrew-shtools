@@ -3,12 +3,11 @@ SHTOOLS homebrew tap
 
 This repo is the SHTOOLS homebrew tap, which can be used to install SHTOOLS on OSX.
 
-This is a work in progress, so if you know how to set this up correctly, let me know!
 
 Installation instructions
 -------------------------
 
-To install brew, use the following command in the terminal window:
+If brew is not already installed, install it using the following command in the terminal window:
 
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -17,10 +16,14 @@ If brew is already installed, update it and the previously installed packages us
     brew update
     brew upgrade
  
-To download the SHTOOLS tap, enter
+To download and install the SHTOOLS tap, enter
 
-    brew tap SHTOOLS/shtools
+    brew tap shtools/shtools
+    brew install shtools
 
+To obtain information about the brew installation of SHTOOLS, enter
+
+    brew info shtools
 
 For more information
 --------------------
