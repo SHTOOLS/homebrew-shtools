@@ -10,15 +10,20 @@ class Shtools < Formula
   depends_on "gcc"
   depends_on "fftw"  => ["with-fortran"]
 
+    # Add -nopython option
+    # change lib and include paths in the example makefiles
   def install
 
-	ENV.prepend_path "PATH", "/usr/bin"
+    ENV.prepend_path "PATH", "/usr/bin"
     ENV.prepend_path "PATH", "/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin"
-	system "make"
-	system "make python"
-	#(prefix).install "examples", "index.html", "lib", "Makefile", "man", "modules", "pyshtools", "src", "www", "VERSION"
+    system "make"
+    system "make python"
     
     (share/"shtools").install "examples"
+    inreplace share/"shtools/examples/fortran/Makefile", "../../lib", "/usr/local/lib"
+    inreplace share/"shtools/examples/fortran/Makefile", "../../modules", "/usr/local/include"
+    #inreplace share/"shtools/examples/Makefile", "../../lib", "/usr/local/lib"
+    #inreplace share/"shtools/examples/Makefile", "../../modules", "/usr/local/include"
     (doc).install "index.html"
     (doc).install "www"
     (prefix).install "lib"
@@ -38,15 +43,16 @@ class Shtools < Formula
       
             import sys
             sys.path.append('/usr/local/lib/python2.7/site-packages')
-            (alternatively, add /usr/local/lib/python2.7/site-packages to the system PYTHONPATH)
+            (alternatively, add '/usr/local/lib/python2.7/site-packages' to the system PYTHONPATH)
             import pyshtools as shtools
       
         To run the test/example suite:  
            
             cd /usr/local/share/shtools/examples/fortran
-            make fortran-tests (NOTE: the Makefile needs to be updated to use -I/usr/local/include)
+            make
+            make run-fortran-tests
             cd /usr/local/share/shtools/examples/fortran
-            make python-tests
+            make
                  
         Local SHTOOLS web documentation:
       
@@ -54,7 +60,7 @@ class Shtools < Formula
 
         To obtain information about the SHTOOLS brew installation, enter 
       
-        brew info shtools
+            brew info shtools
     EOS
     s
   end
