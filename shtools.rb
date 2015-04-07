@@ -12,8 +12,6 @@ class Shtools < Formula
   
   depends_on "numpy" => :python
   depends_on "matplotlib" => :python
-  depends_on "ipython" => :python
-  
 
     # Add -nopython option
     # change lib and include paths in the example makefiles
