@@ -6,18 +6,13 @@ class Shtools < Formula
   sha256 "e97ee5262a021c7ffe99535b3dd6a35ccc3d92b962b2f1f483969dbd0e5035f8"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
-  depends_on "python" # if MacOS.version <= :snow_leopard
+  depends_on :python if MacOS.version <= :snow_leopard
   depends_on "gcc"
   depends_on "fftw"  => ["with-fortran"]
   
-  depends_on "numpy" => "python"
-  depends_on "matplotlib" => "python"
-
-    # Add -nopython option
-    # change lib and include paths in the example makefiles
   def install
 
-    #ENV.prepend_path "PATH", "/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin"
+    ENV.prepend_path "PATH", "/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin"
     system "make"
     system "make", "python"
 
