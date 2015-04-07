@@ -6,7 +6,7 @@ class Shtools < Formula
   sha256 "e97ee5262a021c7ffe99535b3dd6a35ccc3d92b962b2f1f483969dbd0e5035f8"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
-  depends_on :python if MacOS.version <= :snow_leopard
+  depends_on :python # if MacOS.version <= :snow_leopard
   depends_on "gcc"
   depends_on "fftw"  => ["with-fortran"]
   
