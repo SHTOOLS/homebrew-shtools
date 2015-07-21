@@ -39,7 +39,6 @@ class Shtools < Formula
 
             import sys
             sys.path.append('/usr/local/lib/python2.7/site-packages')
-            (alternatively, add '/usr/local/lib/python2.7/site-packages' to the system PYTHONPATH)
             import pyshtools as shtools
 
         To run the test/example suite:
