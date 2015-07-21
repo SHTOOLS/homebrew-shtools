@@ -44,9 +44,8 @@ class Shtools < Formula
 
         To run the test/example suite:
 
-            make -C /usr/local/share/shtools/examples/fortran
-            make -C /usr/local/share/shtools/examples/fortran run-fortran-tests
-            make -C /usr/local/share/shtools/examples/python
+            make -C /usr/local/share/shtools/examples/ fortran-tests
+            make -C /usr/local/share/shtools/examples/ python-tests
 
         Local SHTOOLS web documentation:
 
