@@ -2,8 +2,8 @@ require "formula"
 
 class Shtools < Formula
   homepage "https://shtools.ipgp.fr"
-  url "https://github.com/SHTOOLS/SHTOOLS/archive/v3.0.tar.gz"
-  sha256 "e97ee5262a021c7ffe99535b3dd6a35ccc3d92b962b2f1f483969dbd0e5035f8"
+  url "https://github.com/SHTOOLS/SHTOOLS/archive/v3.1.tar.gz"
+  sha256 "36604fbf1f14a1ae950b8d96a1f64f62969f9f4816cdc2ff72be00d8eea16626"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
   depends_on :python if MacOS.version <= :snow_leopard
@@ -19,8 +19,8 @@ class Shtools < Formula
     (share/"shtools").install "examples"
     inreplace share/"shtools/examples/fortran/Makefile", "../../lib", "/usr/local/lib"
     inreplace share/"shtools/examples/fortran/Makefile", "../../modules", "/usr/local/include"
-    #inreplace share/"shtools/examples/Makefile", "../../lib", "/usr/local/lib"
-    #inreplace share/"shtools/examples/Makefile", "../../modules", "/usr/local/include"
+    inreplace share/"shtools/examples/Makefile", "../../lib", "/usr/local/lib"
+    inreplace share/"shtools/examples/Makefile", "../../modules", "/usr/local/include"
     (doc).install "index.html"
     (doc).install "www"
     (prefix/lib).install "lib/libSHTOOLS.a"
