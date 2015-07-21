@@ -21,6 +21,10 @@ To download and install the SHTOOLS tap, enter
     brew tap shtools/shtools
     brew install shtools
 
+To run the examples and tests, enter
+
+    make -C /usr/local/share/shtools/examples/ fortran-tests
+    make -C /usr/local/share/shtools/examples/ python-tests
 To obtain information about the brew installation of SHTOOLS, enter
 
     brew info shtools
