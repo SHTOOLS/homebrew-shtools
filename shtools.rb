@@ -14,7 +14,6 @@ class Shtools < Formula
 
     ENV.prepend_path "PATH", "/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin"
     system "make"
-    system "make", "python"
 
     (share/"shtools").install "examples"
     inreplace share/"shtools/examples/fortran/Makefile", "../../lib", "/usr/local/lib"
