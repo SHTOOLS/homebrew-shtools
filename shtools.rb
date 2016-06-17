@@ -2,8 +2,8 @@ require "formula"
 
 class Shtools < Formula
   homepage "https://shtools.ipgp.fr"
-  url "https://github.com/SHTOOLS/SHTOOLS/archive/v3.1.tar.gz"
-  sha256 "36604fbf1f14a1ae950b8d96a1f64f62969f9f4816cdc2ff72be00d8eea16626"
+  url "https://github.com/SHTOOLS/SHTOOLS/archive/v3.2.tar.gz"
+  sha256 "f9c6c4b14ad26204d3f727d53195fe945bd45744eae52db71229adef511d31e2"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
   depends_on :python if MacOS.version <= :snow_leopard
@@ -23,7 +23,7 @@ class Shtools < Formula
     (doc).install "index.html"
     (doc).install "www"
     (prefix/lib).install "lib/libSHTOOLS.a"
-    (include).install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod"
+    (include/"shtools").install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod"
     (share).install "man"
     (lib/"python2.7/site-packages").install "pyshtools"
 
