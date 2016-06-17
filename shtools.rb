@@ -23,7 +23,7 @@ class Shtools < Formula
     (doc).install "index.html"
     (doc).install "www"
     (prefix/lib).install "lib/libSHTOOLS.a"
-    (include/"shtools").install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod"
+    (include).install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod"
     (share).install "man"
     (lib/"python2.7/site-packages").install "pyshtools"
 
