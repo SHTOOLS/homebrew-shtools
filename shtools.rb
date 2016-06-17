@@ -17,9 +17,9 @@ class Shtools < Formula
 
     (share/"shtools").install "examples"
     inreplace share/"shtools/examples/fortran/Makefile", "../../lib", "/usr/local/lib"
-    inreplace share/"shtools/examples/fortran/Makefile", "../../modules", "/usr/local/include"
+    inreplace share/"shtools/examples/fortran/Makefile", "../../modules", "/usr/local/include/shtools"
     inreplace share/"shtools/examples/Makefile", "../../lib", "/usr/local/lib"
-    inreplace share/"shtools/examples/Makefile", "../../modules", "/usr/local/include"
+    inreplace share/"shtools/examples/Makefile", "../../modules", "/usr/local/include/shtools"
     (doc).install "index.html"
     (doc).install "www"
     (prefix/lib).install "lib/libSHTOOLS.a"
