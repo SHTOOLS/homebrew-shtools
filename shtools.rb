@@ -17,7 +17,6 @@ class Shtools < Formula
     depends_on :pyhton3
     depends_on "numpy" => :python3
     depends_on "matplotlib" => :python
-    depends_on "ipython" => :python
   end
 
   def install
