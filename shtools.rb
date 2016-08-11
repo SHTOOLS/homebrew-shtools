@@ -9,17 +9,15 @@ class Shtools < Formula
   option "with-openmp", "Install the Fortran 95 OpenMP components of SHTOOLS"
 
   depends_on :python if MacOS.version <= :snow_leopard
-  depends_on "ipython" => :python
   depends_on "gcc"
   depends_on "fftw"  => ["with-fortran"]
 
   if build.with? "python3"
-    depends_on :pyhton3
-    depends_on "numpy" => :python3
-    depends_on "matplotlib" => :python
+    depends_on :python3
   end
 
   def install
+    system "make", "fortran"
     system "make", "python2", "F2PY=/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin/f2py"
 
     pkgshare.install "examples"
@@ -33,6 +31,7 @@ class Shtools < Formula
     (lib/"python2.7/site-packages").install "pyshtools"
 
     if build.with? "python3"
+      system "make", "fortran"
       system "make", "python3", "F2PY3=python3 -m numpy.f2py"
       files = Dir["pyshtools/*/*"]
       files.delete("pyshtools/_SHTOOLS.so")
