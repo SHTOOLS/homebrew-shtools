@@ -21,7 +21,7 @@ class Shtools < Formula
   end
 
   def install
-    system "make", "python2", "F2PY="/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin/f2py"
+    system "make", "python2", "F2PY=/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin/f2py"
 
     pkgshare.install "examples"
     inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
