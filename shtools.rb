@@ -9,14 +9,14 @@ class Shtools < Formula
   option "with-openmp", "Install the Fortran 95 OpenMP components of SHTOOLS"
 
   depends_on :python if MacOS.version <= :snow_leopard
-  depends_on "ipython" => :python
   depends_on "gcc"
   depends_on "fftw"  => ["with-fortran"]
 
   if build.with? "python3"
     depends_on :pyhton3
     depends_on "numpy" => :python3
-    depends_on "matplotlib" => :python
+    depends_on "matplotlib" => :python3
+    depends_on "ipython" => :python3
   end
 
   def install
