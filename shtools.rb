@@ -1,8 +1,8 @@
 class Shtools < Formula
   desc "Tools for working with spherical harmonics"
   homepage "https://shtools.ipgp.fr"
-  url "https://github.com/SHTOOLS/SHTOOLS/archive/v3.2.tar.gz"
-  sha256 "f9c6c4b14ad26204d3f727d53195fe945bd45744eae52db71229adef511d31e2"
+  url "https://github.com/SHTOOLS/SHTOOLS/archive/v3.3.tar.gz"
+  sha256 "8b28b79d8975bc0dfa3d9ca731240557009f98a7d1b611c74ba4573791efe145"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
   option "with-python3", "Install the Python 3 components of SHTOOLS"
