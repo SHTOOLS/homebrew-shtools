@@ -5,6 +5,7 @@ class Shtools < Formula
   sha256 "8b28b79d8975bc0dfa3d9ca731240557009f98a7d1b611c74ba4573791efe145"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
+  option "with-python2", "Install the Python 2 components of SHTOOLS"
   option "with-python3", "Install the Python 3 components of SHTOOLS"
   option "with-openmp", "Install the Fortran 95 OpenMP components of SHTOOLS"
 
@@ -18,7 +19,16 @@ class Shtools < Formula
 
   def install
     system "make", "fortran"
-    system "make", "python2", "F2PY=/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin/f2py"
+
+    if build.with? "python2"
+      system "make", "python2", "F2PY=/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin/f2py"
+    end
+    if build.with? "python3"
+      system "make", "python3", "F2PY3=python3 -m numpy.f2py"
+    end
+    if build.with? "openmp"
+      system "make", "fortran-mp"
+    end
 
     pkgshare.install "examples"
     inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
@@ -28,19 +38,17 @@ class Shtools < Formula
     lib.install "lib/libSHTOOLS.a"
     include.install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod"
     share.install "man"
-    (lib/"python2.7/site-packages").install "pyshtools"
 
+    if build.with? "python2"
+      (lib/"python2.7/site-packages").install "pyshtools"
+    end
     if build.with? "python3"
-      system "make", "fortran"
-      system "make", "python3", "F2PY3=python3 -m numpy.f2py"
       files = Dir["pyshtools/*/*"]
       files.delete("pyshtools/_SHTOOLS.so")
       files.delete("pyshtools/_constant.so")
       (lib/"python3.5/site-packages").install files
     end
-
     if build.with? "openmp"
-      system "make", "fortran-mp"
       lib.install "lib/libSHTOOLS-mp.a"
     end
   end
