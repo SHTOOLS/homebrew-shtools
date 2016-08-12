@@ -46,10 +46,7 @@ class Shtools < Formula
       (lib/"python2.7/site-packages").install "pyshtools"
     end
     if build.with? "python3"
-      files = Dir["pyshtools/*/*"]
-      files.delete("pyshtools/_SHTOOLS.so")
-      files.delete("pyshtools/_constant.so")
-      (lib/"python3.5/site-packages").install files
+      (lib/"python3.5/site-packages").install "pyshtools"
     end
     if build.with? "openmp"
       lib.install "lib/libSHTOOLS-mp.a"
