@@ -26,6 +26,9 @@ class Shtools < Formula
     if build.with? "python3"
       system "make", "python3", "F2PY3=python3 -m numpy.f2py"
     end
+    if (build.with? "python2") && (build.with? "python3")
+      cp_r("pyshtools", "pyshtools3")
+    end
     if build.with? "openmp"
       system "make", "fortran-mp"
     end
@@ -34,18 +37,18 @@ class Shtools < Formula
     inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
     inreplace pkgshare/"examples/fortran/Makefile", "../../modules", "/usr/local/include"
     doc.install "index.html"
-    doc.install "LICENSE"
-    doc.install "logo.png"
-    doc.install "README.md"
     doc.install "www"
     lib.install "lib/libSHTOOLS.a"
     include.install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod"
     share.install "man"
 
-    if build.with? "python2"
+    if (build.with? "python2") && (build.with? "python3")
       (lib/"python2.7/site-packages").install "pyshtools"
-    end
-    if build.with? "python3"
+      mv("pyshtools3", "pyshtools")
+      (lib/"python3.5/site-packages").install "pyshtools"
+    elsif build.with? "python2"
+      (lib/"python2.7/site-packages").install "pyshtools"
+    elsif build.with? "python3"
       (lib/"python3.5/site-packages").install "pyshtools"
     end
     if build.with? "openmp"
