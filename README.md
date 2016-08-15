@@ -16,14 +16,14 @@ If brew is already installed, update it and the previously installed packages us
     brew update
     brew upgrade
  
-To download and install the SHTOOLS tap that includes the Fortran 95 and Python 2 components, enter
+To download and install the SHTOOLS tap that contains the Fortran 95 components, enter
 
     brew tap shtools/shtools
     brew install shtools
 
-To install the Fortran 95 OpenMP and Python 3 components, add `--with-openmp` and `--with-python3` to the last command
+To install the Fortran 95 OpenMP, Python2, and Python 3 components, add `--with-openmp`, `--with-python2``  and `--with-python3` to the last command
 
-    brew install shtools --with-openmp --with-python3
+    brew install shtools --with-openmp --with-python2 --with-python3
 
 To use SHTOOLS in Python 2:
 
