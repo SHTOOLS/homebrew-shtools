@@ -58,6 +58,6 @@ To obtain information about the brew installation, enter
 
 For more information
 --------------------
-SHTOOLS web site: [shtools.ipgp.fr](http://shtools.ipgp.fr)<br>
+SHTOOLS web site: [shtools.oca.eu](http://shtools.oca.eu)<br>
 SHTOOLS at GitHub: [SHTOOLS/SHTOOLS](https://github.com/SHTOOLS/SHTOOLS)<br>
 SHTOOLS wiki: [Wiki](https://github.com/SHTOOLS/SHTOOLS/wiki)<br>
