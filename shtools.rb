@@ -1,8 +1,8 @@
 class Shtools < Formula
   desc "Tools for working with spherical harmonics"
   homepage "https://shtools.oca.eu"
-  url "https://github.com/SHTOOLS/SHTOOLS/archive/v4.0.tar.gz"
-  sha256 "3e893c6c4e6adcea5e28171332f7c1c24aa12a34ae1f37cd468b1e075cd504cb"
+  url "https://github.com/SHTOOLS/SHTOOLS/archive/v4.1.tar.gz"
+  sha256 "79dd911f3482a7e577b4e0d23b1f141eff90cb3dccfe518f1968c02cdfca5448"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
   option "with-python2", "Install the Python 2 components of SHTOOLS"
@@ -45,11 +45,11 @@ class Shtools < Formula
     if (build.with? "python2") && (build.with? "python3")
       (lib/"python2.7/site-packages").install "pyshtools"
       mv("pyshtools3", "pyshtools")
-      (lib/"python3.5/site-packages").install "pyshtools"
+      (lib/"python3.6/site-packages").install "pyshtools"
     elsif build.with? "python2"
       (lib/"python2.7/site-packages").install "pyshtools"
     elsif build.with? "python3"
-      (lib/"python3.5/site-packages").install "pyshtools"
+      (lib/"python3.6/site-packages").install "pyshtools"
     end
     if build.with? "openmp"
       lib.install "lib/libSHTOOLS-mp.a"
@@ -71,7 +71,7 @@ class Shtools < Formula
         To use SHTOOLS in Python 3:
 
             import sys
-            sys.path.append('/usr/local/lib/python3.5/site-packages')
+            sys.path.append('/usr/local/lib/python3.6/site-packages')
             import pyshtools
 
         To run the test/example suite:
