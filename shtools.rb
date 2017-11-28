@@ -1,8 +1,8 @@
 class Shtools < Formula
   desc "Tools for working with spherical harmonics"
-  homepage "https://shtools.ipgp.fr"
-  url "https://github.com/SHTOOLS/SHTOOLS/archive/v3.3.tar.gz"
-  sha256 "8b28b79d8975bc0dfa3d9ca731240557009f98a7d1b611c74ba4573791efe145"
+  homepage "https://shtools.oca.eu"
+  url "https://github.com/SHTOOLS/SHTOOLS/archive/v4.1.tar.gz"
+  sha256 "79dd911f3482a7e577b4e0d23b1f141eff90cb3dccfe518f1968c02cdfca5448"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
   option "with-openmp", "Install the Fortran 95 OpenMP components of SHTOOLS"
@@ -12,6 +12,10 @@ class Shtools < Formula
 
   def install
     system "make", "fortran"
+
+    if build.with? "openmp"
+      system "make", "fortran-mp"
+    end
 
     pkgshare.install "examples"
     inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
@@ -23,7 +27,6 @@ class Shtools < Formula
     share.install "man"
 
     if build.with? "openmp"
-      system "make", "fortran-mp"
       lib.install "lib/libSHTOOLS-mp.a"
     end
   end
