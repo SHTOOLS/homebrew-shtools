@@ -5,20 +5,13 @@ class Shtools < Formula
   sha256 "8b28b79d8975bc0dfa3d9ca731240557009f98a7d1b611c74ba4573791efe145"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
-  option "with-python3", "Install the Python 3 components of SHTOOLS"
   option "with-openmp", "Install the Fortran 95 OpenMP components of SHTOOLS"
 
-  depends_on :python if MacOS.version <= :snow_leopard
   depends_on "gcc"
   depends_on "fftw"  => ["with-fortran"]
 
-  if build.with? "python3"
-    depends_on :python3
-  end
-
   def install
     system "make", "fortran"
-    system "make", "python2", "F2PY=/System/Library/Frameworks/Python.framework/Versions/Current/Extras/bin/f2py"
 
     pkgshare.install "examples"
     inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
@@ -28,16 +21,6 @@ class Shtools < Formula
     lib.install "lib/libSHTOOLS.a"
     include.install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod"
     share.install "man"
-    (lib/"python2.7/site-packages").install "pyshtools"
-
-    if build.with? "python3"
-      system "make", "fortran"
-      system "make", "python3", "F2PY3=python3 -m numpy.f2py"
-      files = Dir["pyshtools/*/*"]
-      files.delete("pyshtools/_SHTOOLS.so")
-      files.delete("pyshtools/_constant.so")
-      (lib/"python3.5/site-packages").install files
-    end
 
     if build.with? "openmp"
       system "make", "fortran-mp"
@@ -51,23 +34,9 @@ class Shtools < Formula
 
             gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -llapack -lblas
 
-        To use SHTOOLS in Python 2:
-
-            import sys
-            sys.path.append('/usr/local/lib/python2.7/site-packages')
-            import pyshtools
-
-        To use SHTOOLS in Python 3:
-
-            import sys
-            sys.path.append('/usr/local/lib/python3.5/site-packages')
-            import pyshtools
-
         To run the test/example suite:
 
             make -C /usr/local/share/shtools/examples/ fortran-tests
-            make -C /usr/local/share/shtools/examples/ python2-tests
-            make -C /usr/local/share/shtools/examples/ python3-tests
 
         Local SHTOOLS web documentation:
 
