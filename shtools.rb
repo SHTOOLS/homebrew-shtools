@@ -30,7 +30,7 @@ class Shtools < Formula
   end
 
   def caveats
-    s = <<-EOS.undent
+    s = <<~EOS
         To use SHTOOLS with gfortran, compile with
             gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -llapack -lblas
         To run the test/example suite:
