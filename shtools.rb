@@ -1,14 +1,14 @@
 class Shtools < Formula
   desc "Tools for working with spherical harmonics"
   homepage "https://shtools.github.io/SHTOOLS/"
-  url "https://github.com/SHTOOLS/SHTOOLS/archive/v4.4.1.tar.gz"
-  sha256 "5aeae1897e9edb5520366fdfb3ce8ddfb9496c3d230298954ac4a37074eb6771"
+  url "https://github.com/SHTOOLS/SHTOOLS/archive/v4.5.tar.gz"
+  sha256 "1975a2a2bcef8c527d321be08c13c2bc479e0d6b81c468a3203f95df59be4f89"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
   option "with-openmp", "Install the Fortran 95 OpenMP components of SHTOOLS"
 
   depends_on "gcc"
-  depends_on "fftw"  => ["with-fortran"]
+  depends_on "fftw"
 
   def install
     system "make", "fortran"
@@ -21,7 +21,7 @@ class Shtools < Formula
     inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
     inreplace pkgshare/"examples/fortran/Makefile", "../../modules", "/usr/local/include"
     lib.install "lib/libSHTOOLS.a"
-    include.install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod"
+    include.install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod", "modules/ftypes.mod"
     share.install "man"
 
     if build.with? "openmp"
@@ -32,7 +32,7 @@ class Shtools < Formula
   def caveats
     s = <<~EOS
         To use SHTOOLS with gfortran, compile with
-            gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -llapack -lblas
+            gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
         To run the test/example suite:
             make -C /usr/local/share/shtools/examples/ fortran-tests
         To obtain information about the SHTOOLS brew installation, enter
