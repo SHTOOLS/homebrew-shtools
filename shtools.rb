@@ -34,7 +34,7 @@ class Shtools < Formula
         To use SHTOOLS with gfortran, compile with
             gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
         To run the test/example suite:
-            make -C /usr/local/share/shtools/examples/ fortran-tests
+            make -C /usr/local/share/shtools/examples/fortran/ run-fortran-tests
         To obtain information about the SHTOOLS brew installation, enter
             brew info shtools
     EOS
