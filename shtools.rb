@@ -11,6 +11,7 @@ class Shtools < Formula
   depends_on "fftw"
 
   def install
+    ENV.deparallelize
     system "make", "fortran"
 
     if build.with? "openmp"
