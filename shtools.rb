@@ -1,8 +1,8 @@
 class Shtools < Formula
   desc "Tools for working with spherical harmonics"
   homepage "https://shtools.github.io/SHTOOLS/"
-  url "https://github.com/SHTOOLS/SHTOOLS/archive/v4.5.3.tar.gz"
-  sha256 "11d876668c512e0184a0530507a43374d6f7143d3b7846e34023a998992a3fde"
+  url "https://github.com/SHTOOLS/SHTOOLS/archive/v4.5.4.tar.gz"
+  sha256 "cad0d2e1ca72f3d423a49d98145b0ad4892d1d2cba3ad5851e0faad537cb30f8"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
   option "with-openmp", "Install the Fortran 95 OpenMP components of SHTOOLS"
