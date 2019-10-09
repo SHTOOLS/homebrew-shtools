@@ -20,7 +20,7 @@ class Shtools < Formula
     end
 
     if build.with? "examples"
-      pkgshare.install "examples/fortran", "examples/ExampleDataFiles"
+      pkgshare.install "examples"
       inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
       inreplace pkgshare/"examples/fortran/Makefile", "../../modules", "/usr/local/include"
     end
@@ -34,15 +34,11 @@ class Shtools < Formula
     end
   end
 
-  def caveats
-    s = <<~EOS
-        To use SHTOOLS with gfortran, compile with
-            gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
-        To run the test/example suite:
-            make -C /usr/local/share/shtools/examples/fortran/ LAPACK="-framework accelerate" BLAS="" run-fortran-tests
-        To obtain information about the SHTOOLS brew installation, enter
-            brew info shtools
+  def caveats; <<~EOS
+    To use SHTOOLS with gfortran, compile with
+        gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
+    To run the test/example suite:
+        make -C /usr/local/share/shtools/examples/fortran/ LAPACK="-framework accelerate" BLAS="" run-fortran-tests
     EOS
-    s
   end
 end
