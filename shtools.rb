@@ -20,8 +20,8 @@ class Shtools < Formula
     end
 
     if build.with? "examples"
-      pkgshare.install "examples/fortran"
-      pkgshare.install "examples/ExampleDataFiles"
+      pkgshare.install "examples/fortran/"
+      pkgshare.install "examples/ExampleDataFiles/"
       inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
       inreplace pkgshare/"examples/fortran/Makefile", "../../modules", "/usr/local/include"
     end
