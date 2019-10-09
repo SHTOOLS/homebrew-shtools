@@ -6,6 +6,7 @@ class Shtools < Formula
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
   option "with-openmp", "Install the Fortran 95 OpenMP components of SHTOOLS"
+  option "with-examples", "Install the Fortran 95 example code and data"
 
   depends_on "gcc"
   depends_on "fftw"
@@ -18,9 +19,13 @@ class Shtools < Formula
       system "make", "fortran-mp"
     end
 
-    pkgshare.install "examples"
-    inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
-    inreplace pkgshare/"examples/fortran/Makefile", "../../modules", "/usr/local/include"
+    if build.with? "examples"
+      pkgshare.install "examples/fortran"
+      pkgshare.install "examples/ExampleDataFiles"
+      inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
+      inreplace pkgshare/"examples/fortran/Makefile", "../../modules", "/usr/local/include"
+    end
+
     lib.install "lib/libSHTOOLS.a"
     include.install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod", "modules/ftypes.mod"
     share.install "man"
