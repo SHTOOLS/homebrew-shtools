@@ -6,6 +6,7 @@ class Shtools < Formula
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
   option "with-openmp", "Install the Fortran 95 OpenMP components of SHTOOLS"
+  option "with-examples", "Install the Fortran 95 example code and data"
 
   depends_on "gcc"
   depends_on "fftw"
@@ -18,9 +19,12 @@ class Shtools < Formula
       system "make", "fortran-mp"
     end
 
-    pkgshare.install "examples"
-    inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
-    inreplace pkgshare/"examples/fortran/Makefile", "../../modules", "/usr/local/include"
+    if build.with? "examples"
+      pkgshare.install "examples"
+      inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
+      inreplace pkgshare/"examples/fortran/Makefile", "../../modules", "/usr/local/include"
+    end
+
     lib.install "lib/libSHTOOLS.a"
     include.install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod", "modules/ftypes.mod"
     share.install "man"
@@ -30,15 +34,11 @@ class Shtools < Formula
     end
   end
 
-  def caveats
-    s = <<~EOS
-        To use SHTOOLS with gfortran, compile with
-            gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
-        To run the test/example suite:
-            make -C /usr/local/share/shtools/examples/fortran/ LAPACK="-framework accelerate" BLAS="" run-fortran-tests
-        To obtain information about the SHTOOLS brew installation, enter
-            brew info shtools
+  def caveats; <<~EOS
+    To use SHTOOLS with gfortran, compile with
+        gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
+    To run the test/example suite:
+        make -C /usr/local/share/shtools/examples/fortran/ LAPACK="-framework accelerate" BLAS="" run-fortran-tests
     EOS
-    s
   end
 end
