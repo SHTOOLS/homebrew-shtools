@@ -37,7 +37,7 @@ class Shtools < Formula
   def caveats; <<~EOS
     To use SHTOOLS with gfortran, compile with
         gfortran -I/usr/local/include -m64 -fPIC -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
-    To run the test/example suite:
+    To run the test/example suite (must install with the option --with-examples):
         make -C /usr/local/share/shtools/examples/fortran/ LAPACK="-framework accelerate" BLAS="" run-fortran-tests
     EOS
   end
