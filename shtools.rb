@@ -48,7 +48,7 @@ class Shtools < Formula
   test do
     system "make", "-C", "/usr/local/share/shtools/fortran",
                    "run-fortran-tests-no-timing",
-                   "LAPACK='-framework accelerate'",
+                   'LAPACK="-framework accelerate"',
                    "BLAS=''"
   end
 end
