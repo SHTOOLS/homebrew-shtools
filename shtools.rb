@@ -46,8 +46,8 @@ class Shtools < Formula
   end
 
   test do
-    cp pkgshare, testpath
-    system "make", "run-fortran-tests-no-timing",
+    system "make", "-C", "/usr/local/share/shtools/fortran",
+                   "run-fortran-tests-no-timing",
                    "LAPACK=-framework accelerate",
                    "BLAS=''"
   end
