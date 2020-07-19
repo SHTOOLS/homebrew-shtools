@@ -15,12 +15,9 @@ class Shtools < Formula
   def install
     ENV.deparallelize
     system "make", "fortran"
+    system "make", "fortran-mp" if build.with?("openmp")
 
-    if build.with? "openmp"
-      system "make", "fortran-mp"
-    end
-
-    if build.with? "examples"
+    if build.with?("examples")
       pkgshare.install "examples/fortran/"
       pkgshare.install "examples/ExampleDataFiles/"
       inreplace pkgshare/"fortran/Makefile", "../../lib", "/usr/local/lib"
@@ -28,25 +25,24 @@ class Shtools < Formula
     end
 
     lib.install "lib/libSHTOOLS.a"
+    lib.install "lib/libSHTOOLS-mp.a" if build.with?("openmp")
     include.install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod", "modules/ftypes.mod"
     share.install "man"
-
-    if build.with? "openmp"
-      lib.install "lib/libSHTOOLS-mp.a"
-    end
   end
 
   def caveats
     <<~EOS
       To use SHTOOLS with your gfortran code, compile with the options
-        -I/usr/local/include -m64 -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
+        -I/usr/local/include -lSHTOOLS -lfftw3 -lm -framework accelerate -m64 -O3
+      Location of the example code and data:
+        /usr/local/share/shtools
       To run the test suite (must install with the option --with-examples):
-        make -C /usr/local/share/shtools/fortran LAPACK="-framework accelerate" BLAS="" run-fortran-tests-no-timing
+        brew test shtools
     EOS
   end
 
   test do
-    FileUtils.cp_r pkgshare, testpath
+    cp_r pkgshare, testpath
     system "make", "-C", "shtools/fortran",
                    "run-fortran-tests-no-timing",
                    "LAPACK=-framework accelerate",
