@@ -46,7 +46,7 @@ class Shtools < Formula
   end
 
   test do
-    FileUtils.cp_r pkgshare/".", testpath
+    FileUtils.cp_r pkgshare, testpath
     system "ls"
     system "make", "-C", "fortran",
                    "run-fortran-tests-no-timing",
