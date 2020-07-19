@@ -40,12 +40,12 @@ class Shtools < Formula
       To use SHTOOLS with your gfortran code, compile with the options
         -I/usr/local/include -m64 -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
       To run the test suite (must install with the option --with-examples):
-        make -C /usr/local/share/shtools LAPACK="-framework accelerate" BLAS="" run-fortran-tests-no-timing
+        make -C /usr/local/share/shtools/fortran LAPACK="-framework accelerate" BLAS="" run-fortran-tests-no-timing
     EOS
   end
 
   test do
-    system "make", "-C", "/usr/local/share/shtools",
+    system "make", "-C", "/usr/local/share/shtools/fortran",
                    "run-fortran-tests-no-timing",
                    "LAPACK='-framework accelerate'",
                    "BLAS=''"
