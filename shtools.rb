@@ -47,8 +47,7 @@ class Shtools < Formula
 
   test do
     FileUtils.cp_r pkgshare, testpath
-    system "ls"
-    system "make", "-C", "fortran",
+    system "make", "-C", "shtools/fortran",
                    "run-fortran-tests-no-timing",
                    "LAPACK=-framework accelerate",
                    "BLAS="
