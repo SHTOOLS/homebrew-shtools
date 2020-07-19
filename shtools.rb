@@ -46,7 +46,7 @@ class Shtools < Formula
   end
 
   test do
-    FileUtils.cp_r pkgshare"/.", "path/to/my_destination_folder", testpath
+    FileUtils.cp_r pkgshare/".", testpath
     system "make", "run-fortran-tests-no-timing",
                    "LAPACK=-framework accelerate",
                    "BLAS="
