@@ -21,9 +21,9 @@ class Shtools < Formula
     end
 
     if build.with? "examples"
-      pkgshare.install "examples"
-      inreplace pkgshare/"examples/fortran/Makefile", "../../lib", "/usr/local/lib"
-      inreplace pkgshare/"examples/fortran/Makefile", "../../modules", "/usr/local/include"
+      pkgshare.install "examples/fortran/"
+      inreplace pkgshare/"Makefile", "../../lib", "/usr/local/lib"
+      inreplace pkgshare/"Makefile", "../../modules", "/usr/local/include"
     end
 
     lib.install "lib/libSHTOOLS.a"
@@ -40,12 +40,13 @@ class Shtools < Formula
       To use SHTOOLS with your gfortran code, compile with the options
         -I/usr/local/include -m64 -O3 -lSHTOOLS -lfftw3 -lm -framework accelerate
       To run the test suite (must install with the option --with-examples):
-        make -C /usr/local/share/shtools/examples/fortran/ LAPACK="-framework accelerate" BLAS="" run-fortran-tests-no-timing
+        make -C /usr/local/share/shtools LAPACK="-framework accelerate" BLAS="" run-fortran-tests-no-timing
     EOS
   end
 
   test do
-    system "make", "run-fortran-tests-no-timing",
+    system "make", "-C", "/usr/local/share/shtools",
+                   "run-fortran-tests-no-timing",
                    "LAPACK='-framework accelerate'",
                    "BLAS=''"
   end
