@@ -45,9 +45,9 @@ class Shtools < Formula
                    "F95=gfortran",
                    "F95FLAGS=-m64 -fPIC -O3 -std=gnu -ffast-math",
                    "MODFLAG=-I/usr/local/include",
-                   "LIBPATH=-L/usr/local/lib",
+                   "LIBPATH=/usr/local/lib",
                    "LIBNAME=SHTOOLS",
-                   "FFTW=-L/usr/local/lib -lfftw3 -lm",
+                   "FFTW=-L /usr/local/lib -lfftw3 -lm",
                    "LAPACK=-framework accelerate",
                    "BLAS="
   end
