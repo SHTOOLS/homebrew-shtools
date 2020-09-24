@@ -42,6 +42,12 @@ class Shtools < Formula
     cp_r pkgshare, testpath
     system "make", "-C", "shtools/fortran",
                    "run-fortran-tests-no-timing",
+                   "F95=gfortran",
+                   "F95FLAGS=-m64 -fPIC -O3 -std=gnu -ffast-math",
+                   "MODFLAG=-I/usr/local/include",
+                   "LIBPATH=-L/usr/local/lib",
+                   "LIBNAME=SHTOOLS",
+                   "FFTW=-L/usr/local/lib -lfftw3 -lm",
                    "LAPACK=-framework accelerate",
                    "BLAS="
   end
