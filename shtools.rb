@@ -39,7 +39,6 @@ class Shtools < Formula
   end
 
   test do
-    ENV.deparallelize
     cp_r pkgshare, testpath
     system "make", "-C", "shtools/fortran",
                    "run-fortran-tests-no-timing",
