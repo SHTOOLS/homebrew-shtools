@@ -1,8 +1,8 @@
 class Shtools < Formula
   desc "Spherical Harmonic Tools"
   homepage "https://shtools.github.io/SHTOOLS/"
-  url "https://github.com/SHTOOLS/SHTOOLS/archive/v4.7.tar.gz"
-  sha256 "2d6f426dbdeb8e3a16b1cd5ea5dd5db228bdb76f438abebcccd15e43096e8d37"
+  url "https://github.com/SHTOOLS/SHTOOLS/archive/v4.7.1.tar.gz"
+  sha256 "cb15fe572f45c4979f3e1dd3e413446c5e375f46f5b6cd7bc0abd76bae5cb551"
   license "BSD-3-Clause"
   head "https://github.com/SHTOOLS/homebrew-shtools.git"
 
@@ -13,20 +13,17 @@ class Shtools < Formula
   depends_on "gcc"
 
   def install
-    ENV.deparallelize
     system "make", "fortran"
     system "make", "fortran-mp" if build.with?("openmp")
 
     if build.with?("examples")
       pkgshare.install "examples/fortran/"
       pkgshare.install "examples/ExampleDataFiles/"
-      inreplace pkgshare/"fortran/Makefile", "../../lib", "/usr/local/lib"
-      inreplace pkgshare/"fortran/Makefile", "../../modules", "/usr/local/include"
     end
 
     lib.install "lib/libSHTOOLS.a"
     lib.install "lib/libSHTOOLS-mp.a" if build.with?("openmp")
-    include.install "modules/fftw3.mod", "modules/planetsconstants.mod", "modules/shtools.mod", "modules/ftypes.mod"
+    include.install "include/fftw3.mod", "include/planetsconstants.mod", "include/shtools.mod", "include/ftypes.mod"
     share.install "man"
   end
 
