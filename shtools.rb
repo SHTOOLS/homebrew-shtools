@@ -29,6 +29,17 @@ class Shtools < Formula
 
   def caveats
     <<~EOS
+      ***************************************************************************
+      *
+      *    The homebrew tap that you are using to install SHTOOLS will no longer
+      *    be supported after version 4.8. To install the official version of
+      *    SHTOOLS, please do the following:
+      *
+      *      brew uninstall shtools
+      *      brew untap shtools/shtools
+      *      brew install shtools
+      *
+      ***************************************************************************
       To use SHTOOLS with your gfortran code, compile with the options
         -I/usr/local/include -lSHTOOLS -lfftw3 -lm -framework accelerate -m64 -O3
       Location of the example code and data:
